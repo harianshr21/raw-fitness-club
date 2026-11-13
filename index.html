@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0a0a0a">
+<link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="icons/icon.svg">
+<title>RAW FITNESS CLUB</title>
+<style>
+:root{--bg:#0a0a0a;--s1:#151515;--s2:#1f1f1f;--bd:#2c2c2c;--tx:#f4f4f2;--mu:#9a9a96;--red:#e10600;--red2:#ff3b2f;--nav:64px}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.45 system-ui,-apple-system,Roboto,sans-serif}
+body{max-width:560px;margin:auto;padding:env(safe-area-inset-top) 0 calc(var(--nav) + 18px + env(safe-area-inset-bottom))}
+h1,h2,h3{font-family:Impact,"Arial Narrow Bold","Roboto Condensed",system-ui,sans-serif;text-transform:uppercase;letter-spacing:.04em;margin:0}
+h2{font-size:26px;margin:22px 16px 4px}.sub{color:var(--mu);margin:0 16px 14px}
+.red{color:var(--red)}
+button,.btn{font:inherit;font-weight:700;letter-spacing:.05em;text-transform:uppercase;border:0;border-radius:10px;padding:13px 18px;color:#fff;background:linear-gradient(135deg,var(--red),var(--red2));cursor:pointer;transition:transform .15s,box-shadow .2s;box-shadow:0 6px 18px #e1060040;text-decoration:none;display:inline-block;text-align:center}
+button:active,.btn:active{transform:scale(.96)}
+.g{background:var(--s2);box-shadow:none;border:1px solid var(--bd)}.sm{padding:8px 12px;font-size:12px}
+input,select,textarea{width:100%;background:var(--s1);color:var(--tx);border:1px solid var(--bd);border-radius:10px;padding:12px;font:inherit;margin-bottom:8px}
+input:focus,select:focus,textarea:focus{outline:0;border-color:var(--red)}
+#v{animation:in .35s ease}@keyframes in{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.hero{position:relative;min-height:470px;display:flex;flex-direction:column;justify-content:flex-end;padding:22px 18px;background:linear-gradient(180deg,#0a0a0a00 20%,#0a0a0a 95%),url(img/hero.jpg) center/cover,radial-gradient(circle at 70% 20%,#e1060066,transparent 55%),repeating-linear-gradient(45deg,#161616 0 14px,#111 14px 28px);overflow:hidden}
+.logo{position:absolute;top:18px;left:18px;display:flex;align-items:center;gap:10px}
+.logo i{width:38px;height:38px;border-radius:9px;background:var(--red);display:grid;place-items:center;font:normal 22px Impact,sans-serif}
+.logo b{font:20px/1 Impact,sans-serif;letter-spacing:.08em}.logo small{display:block;color:var(--mu);font-size:10px;letter-spacing:.3em}
+.hero h1{font-size:46px;line-height:.98}.hero p{color:#cfcfca;margin:10px 0 18px}
+.row{display:flex;gap:10px;flex-wrap:wrap}.row>*{flex:1}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:16px}
+.stats div,.card{background:var(--s1);border:1px solid var(--bd);border-radius:14px}
+.stats div{padding:12px;text-align:center}.stats b{font:26px Impact,sans-serif;color:var(--red);display:block}.stats span{font-size:12px;color:var(--mu)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0 16px}
+.fac{padding:16px;transition:transform .2s,border-color .2s}.fac:hover{transform:translateY(-3px);border-color:var(--red)}.fac span{font-size:28px}.fac h3{font-size:15px;margin-top:6px}
+.card{margin:0 16px 12px;padding:16px;position:relative;overflow:hidden}
+.plan .pr{font:34px Impact,sans-serif;color:var(--red)}.plan ul{padding-left:18px;color:var(--mu);margin:8px 0 14px}
+.plan.hot{border-color:var(--red)}.tagr{position:absolute;top:12px;right:-26px;background:var(--red);font-size:10px;font-weight:700;padding:3px 30px;transform:rotate(35deg)}
+.chips{display:flex;gap:8px;overflow-x:auto;padding:0 16px 12px;scrollbar-width:none}.chips button{flex:none;padding:9px 14px;font-size:12px;background:var(--s2);box-shadow:none;border:1px solid var(--bd)}
+.chips button.on{background:var(--red);border-color:var(--red)}
+.ban{height:120px;margin:0 16px 12px;border-radius:14px;display:grid;place-items:center;font-size:54px;background:radial-gradient(circle at 30% 30%,#e1060088,transparent 60%),repeating-linear-gradient(135deg,#1a1a1a 0 12px,#121212 12px 24px);border:1px solid var(--bd)}
+.ex h3{font-size:17px;display:flex;justify-content:space-between;gap:8px}.ex h3 b{color:var(--red);font-size:14px;white-space:nowrap}.ex p{margin:6px 0 0;color:var(--mu)}
+.ph{width:76px;height:76px;border-radius:50%;background:linear-gradient(135deg,var(--red),#400) center/cover;display:grid;place-items:center;font:28px Impact,sans-serif;flex:none}
+.tr{display:flex;gap:14px;align-items:center}.tr small{color:var(--mu)}.smp{font-size:10px;color:var(--red);border:1px solid var(--red);border-radius:4px;padding:0 5px;margin-left:6px}
+nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:560px;height:calc(var(--nav) + env(safe-area-inset-bottom));padding-bottom:env(safe-area-inset-bottom);background:#0a0a0af2;backdrop-filter:blur(12px);border-top:1px solid var(--bd);display:flex;z-index:5}
+nav a{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:10px;color:var(--mu);text-decoration:none;letter-spacing:.06em;text-transform:uppercase;transition:color .2s}
+nav a span{font-size:20px}nav a.on{color:var(--red)}
+.modal{position:fixed;inset:0;background:#000b;z-index:9;display:flex;align-items:flex-end;justify-content:center}
+.sheet{background:var(--s1);width:100%;max-width:560px;border-radius:20px 20px 0 0;padding:20px 18px calc(20px + env(safe-area-inset-bottom));animation:up .3s ease;max-height:92vh;overflow:auto}
+@keyframes up{from{transform:translateY(100%)}to{transform:none}}
+#toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:var(--red);padding:10px 16px;border-radius:99px;font-weight:600;z-index:20;opacity:0;pointer-events:none;transition:opacity .25s;max-width:90%;text-align:center}
+#toast.on{opacity:1}.note{font-size:12px;color:var(--mu)}
+.r2{display:grid;grid-template-columns:1fr 1fr;gap:8px}.tag{font-size:11px;font-weight:700;padding:2px 8px;border-radius:99px;background:var(--s2)}
+.ok{color:#3ddc84}.bad{color:var(--red2)}label{font-size:12px;color:var(--mu)}
+</style></head><body>
+<div id="v"></div><nav id="nav"></nav><div id="toast"></div><div id="m"></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+var K='rawfc_v1',Q=function(s){return document.querySelector(s)},
+E=function(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})};
+var CATS=[['chest','Chest','🏋️'],['back','Back','🦍'],['shoulders','Shoulders','🔱'],['arms','Arms','💪'],['legs','Legs','🦵'],['abs','Abs','🔥'],['loss','Weight Loss','⚡'],['muscle','Muscle Building','🦾']];
+function def(){return{cfg:{phone:'',wa:'',addr:'',map:'',insta:'',pin:'1234'},
+plans:[{name:'Monthly Membership',dur:'1 month',price:'',feat:'Full gym access, Cardio & strength floor, Fitness guidance'},{name:'Quarterly Membership',dur:'3 months',price:'',feat:'Full gym access, Cardio & strength floor, Fitness guidance'},{name:'Half-Yearly Membership',dur:'6 months',price:'',feat:'Full gym access, Fitness guidance, Priority support'},{name:'Annual Membership',dur:'12 months',price:'',feat:'Full gym access, Fitness guidance, Best value, Priority support'}],
+work:{chest:[['Barbell Bench Press','4 × 8-10','Lie flat, lower the bar to mid-chest, press up powerfully.'],['Incline Dumbbell Press','3 × 10-12','Bench at 30°, press dumbbells over upper chest.'],['Cable Fly','3 × 12-15','Slight elbow bend, squeeze hands together at the centre.']],
+back:[['Lat Pulldown','4 × 10-12','Pull bar to upper chest, drive elbows down.'],['Barbell Row','4 × 8-10','Hinge forward, flat back, pull bar to lower ribs.'],['Seated Cable Row','3 × 12','Keep chest tall, squeeze shoulder blades together.']],
+shoulders:[['Overhead Press','4 × 8-10','Press the bar overhead, brace your core.'],['Lateral Raise','3 × 12-15','Raise dumbbells to shoulder height, controlled.'],['Rear Delt Fly','3 × 15','Hinge forward, open arms wide to hit rear delts.']],
+arms:[['Barbell Curl','3 × 10-12','Keep elbows pinned, curl with control.'],['Triceps Pushdown','3 × 12','Elbows tight, extend fully and squeeze.'],['Hammer Curl','3 × 12','Neutral grip to build forearms and biceps.']],
+legs:[['Barbell Squat','4 × 8-10','Chest up, sit down to parallel, drive through heels.'],['Leg Press','3 × 12','Feet shoulder-width, do not lock knees.'],['Romanian Deadlift','3 × 10','Push hips back, feel hamstrings stretch.']],
+abs:[['Plank','3 × 45-60 sec','Straight line head to heels, tight core.'],['Hanging Leg Raise','3 × 10-12','Lift legs slowly, no swinging.'],['Cable Crunch','3 × 15','Round the spine and crunch toward the floor.']],
+loss:[['Treadmill Intervals','10 rounds · 1 min fast/1 min easy','Raise heart rate, then recover.'],['Kettlebell Swing','4 × 15','Hip hinge power, arms just guide the bell.'],['Battle Rope Waves','4 × 30 sec','Fast alternating waves, stay low.']],
+muscle:[['Deadlift','4 × 5-6','Heavy compound lift. Neutral spine, drive through the floor.'],['Weighted Pull-Up','4 × 6-8','Full stretch at the bottom, chin over bar.'],['Dumbbell Bench Press','4 × 8-10','Deep stretch, controlled tempo, progressive overload.']]},
+trainers:[{n:'Trainer Name 1',sp:'Strength & Muscle Building',exp:'5 years',img:''},{n:'Trainer Name 2',sp:'Weight Loss & Conditioning',exp:'4 years',img:''},{n:'Trainer Name 3',sp:'Functional & Mobility',exp:'3 years',img:''}],enq:[],mem:[]}}
+var D=def();try{var sv=JSON.parse(localStorage.getItem(K));if(sv)D=Object.assign(def(),sv)}catch(x){}
+var sb=window.supabase.createClient(
+'https://vmeuddrtlwboqrhpyaoo.supabase.co',
+'sb_publishable_GAqKU4uTM75tWFC0JC7Jjg_oDovrdrg'
+);
+var cloudReady=false;
+
+function save(){
+  try{localStorage.setItem(K,JSON.stringify(D))}catch(x){}
+  if(cloudReady){
+    sb.from('gym_content')
+      .update({
+        content:{
+          plans:D.plans,
+          trainers:D.trainers,
+          work:D.work
+        },
+        updated_at:new Date().toISOString()
+      })
+      .eq('section','app_data')
+      .then(function(r){
+        if(r.error)console.error('Cloud save error:',r.error);
+      });
+  }
+}
+
+async function loadCloud(){
+  try{
+    var r=await sb.from('gym_content')
+      .select('content')
+      .eq('section','app_data')
+      .maybeSingle();
+
+    if(r.error) throw r.error;
+
+    if(r.data && r.data.content && Object.keys(r.data.content).length){
+      D.plans=r.data.content.plans || D.plans;
+      D.trainers=r.data.content.trainers || D.trainers;
+      D.work=r.data.content.work || D.work;
+    }else{
+      var w=await sb.from('gym_content')
+        .update({
+          content:{
+            plans:D.plans,
+            trainers:D.trainers,
+            work:D.work
+          },
+          updated_at:new Date().toISOString()
+        })
+        .eq('section','app_data');
+
+      if(w.error) throw w.error;
+    }
+
+    cloudReady=true;
+    route();
+    console.log('Cloud data loaded');
+  }catch(e){
+    console.error('Cloud load error:',e);
+  }
+}
+
+loadCloud();
+function toast(t){var o=Q('#toast');o.textContent=t;o.className='on';clearTimeout(toast.t);toast.t=setTimeout(function(){o.className=''},2600)}
+function dig(s){return String(s||'').replace(/\D/g,'')}
+function waurl(n,t){n=dig(n);if(n.length==10)n='91'+n;return 'https://wa.me/'+n+'?text='+encodeURIComponent(t)}
+function pr(p){return p.price?'₹'+E(p.price):'₹ — <small class="note">set price in Admin</small>'}
+var NAV=[['home','Home','🏠'],['plans','Plans','🎟️'],['workouts','Workouts','🏋️'],['trainers','Trainers','👤'],['contact','Contact','📍']];
+var cat='chest',tab='plans',authed=false;
+function go(r){location.hash=r}
+function route(){var r=(location.hash||'#home').slice(1);if(!V[r])r='home';
+Q('#nav').innerHTML=NAV.map(function(n){return '<a href="#'+n[0]+'" class="'+(n[0]==r?'on':'')+'"><span>'+n[2]+'</span>'+n[1]+'</a>'}).join('');
+var v=Q('#v');v.style.animation='none';void v.offsetWidth;v.style.animation='';v.innerHTML=V[r]();scrollTo(0,0)}
+var FAC=[['🏋️','Strength Training'],['🏃','Cardio Equipment'],['⚙️','Weight Training'],['🎯','Personal Training'],['🧭','Fitness Guidance']];
+var V={
+home:function(){return '<div class="hero"><div class="logo"><i>R</i><div><b>RAW</b><small>FITNESS CLUB</small></div></div><h1>Forge your <span class="red">raw</span> strength.</h1><p>No shortcuts. No excuses. Train hard, get stronger and become the best version of you.</p><div class="row"><button onclick="openEnq(\'New membership\')">Join Now</button></div><div class="row" style="margin-top:10px"><button class="g" onclick="go(\'plans\')">Membership Plans</button><button class="g" onclick="go(\'workouts\')">Explore Workouts</button></div></div>'
++'<div class="stats"><div><b>5+</b><span>Facilities</span></div><div><b>8</b><span>Workout Programs</span></div><div><b>1:1</b><span>Personal Training</span></div></div>'
++'<h2>Gym <span class="red">Facilities</span></h2><p class="sub">Everything you need to train hard.</p><div class="grid">'+FAC.map(function(f){return '<div class="card fac" style="margin:0"><span>'+f[0]+'</span><h3>'+f[1]+'</h3></div>'}).join('')+'<div class="card fac" style="margin:0;display:grid;place-items:center"><button onclick="go(\'trainers\')" class="sm">Meet Trainers</button></div></div>'
++'<h2 style="margin-top:26px">Ready to start?</h2><p class="sub">Send an enquiry and the team will reach out.</p><div class="card"><button style="width:100%" onclick="openEnq(\'New membership\')">Join Now</button></div>'},
+plans:function(){return '<h2>Membership <span class="red">Plans</span></h2><p class="sub">Prices are set by the gym owner.</p>'+D.plans.map(function(p,i){return '<div class="card plan'+(i==3?' hot':'')+'">'+(i==3?'<div class="tagr">BEST VALUE</div>':'')+'<h3>'+E(p.name)+'</h3><div class="note">'+E(p.dur)+'</div><div class="pr">'+pr(p)+'</div><ul>'+String(p.feat).split(',').filter(function(x){return x.trim()}).map(function(x){return '<li>'+E(x.trim())+'</li>'}).join('')+'</ul><button style="width:100%" onclick="openEnq(\''+i+'\',1)">Join Now</button></div>'}).join('')},
+workouts:function(){var c=CATS.filter(function(x){return x[0]==cat})[0];return '<h2>Explore <span class="red">Workouts</span></h2><p class="sub">Pick a muscle group or goal.</p><div class="chips">'+CATS.map(function(x){return '<button class="'+(x[0]==cat?'on':'')+'" onclick="cat=\''+x[0]+'\';route()">'+x[1]+'</button>'}).join('')+'</div><div class="ban">'+c[2]+'</div>'+(D.work[cat]||[]).map(function(x){return '<div class="card ex"><h3>'+E(x[0])+'<b>'+E(x[1])+'</b></h3><p>'+E(x[2])+'</p></div>'}).join('')},
+trainers:function(){return '<h2>Our <span class="red">Trainers</span></h2><p class="sub">Sample profiles. Edit them in Admin.</p>'+D.trainers.map(function(t,i){return '<div class="card"><div class="tr"><div class="ph" style="'+(t.img?'background-image:url('+E(t.img)+')':'')+'">'+(t.img?'':E(t.n.charAt(0)))+'</div><div><h3>'+E(t.n)+'</h3><small>'+E(t.sp)+'<br>Experience: '+E(t.exp)+'</small></div></div><button class="g sm" style="margin-top:12px;width:100%" onclick="openEnq(\'Personal training with '+E(t.n).replace(/\x27/g,'')+'\')">Personal Training Enquiry</button></div>'}).join('')},
+contact:function(){var c=D.cfg;return '<h2>Contact <span class="red">Us</span></h2><p class="sub">Visit, call or message us.</p><div class="card"><p><b>📍 Address</b><br>'+(E(c.addr)||'<span class="note">[Add address in Admin]</span>')+'</p><p><b>📞 Phone</b><br>'+(E(c.phone)||'<span class="note">[Add phone in Admin]</span>')+'</p><div class="row"><button onclick="openMap()">Map</button><button onclick="openWA()">WhatsApp</button><button class="g" onclick="openIG()">Instagram</button></div></div><div class="card"><h3>Send an enquiry</h3><br><button style="width:100%" onclick="openEnq(\'General enquiry\')">Enquire Now</button></div><p class="sub" style="text-align:center"><a href="#admin" style="color:var(--mu)">Admin login</a></p>'},
+admin:function(){return authed?adminUI():'<h2>Admin <span class="red">Login</span></h2><p class="sub">Owner access only.</p><div class="card"><input id="pin" type="password" inputmode="numeric" placeholder="PIN"><button style="width:100%" onclick="login()">Login</button><p class="note">Default PIN is 1234. Change it in Settings. This PIN only protects the demo on this device; real security needs a server backend.</p></div>'}};
+function openWA(){if(!dig(D.cfg.wa))return toast('Add WhatsApp number in Admin → Settings');window.open(waurl(D.cfg.wa,'Hi RAW FITNESS CLUB, I would like to know more.'),'_blank')}
+function openIG(){if(!D.cfg.insta)return toast('Add Instagram link in Admin → Settings');window.open(D.cfg.insta,'_blank')}
+function openMap(){if(!D.cfg.map)return toast('Add Google Maps link in Admin → Settings');window.open(D.cfg.map,'_blank')}
+function closeM(){Q('#m').innerHTML=''}
+function openEnq(t,isPlan){if(isPlan)t='Plan: '+D.plans[+t].name;
+Q('#m').innerHTML='<div class="modal" onclick="if(event.target==this)closeM()"><div class="sheet"><h3>Enquiry</h3><p class="note" style="margin-top:4px">'+E(t)+'. This is an enquiry only. It is not a booking or payment.</p><input id="en" placeholder="Your name"><input id="ep" placeholder="Phone number" inputmode="tel"><textarea id="em" rows="3" placeholder="Message (optional)"></textarea><div class="row"><button onclick="sendEnq(\''+E(t).replace(/\x27/g,'')+'\')">Send on WhatsApp</button><button class="g" onclick="closeM()">Cancel</button></div></div></div>'}
+function sendEnq(t){var n=Q('#en').value.trim(),p=Q('#ep').value.trim(),m=Q('#em').value.trim();if(!n||dig(p).length<10)return toast('Enter name and a valid phone');
+D.enq.unshift({id:Date.now(),t:new Date().toISOString(),n:n,p:p,m:m,topic:t});save();closeM();
+if(dig(D.cfg.wa))window.open(waurl(D.cfg.wa,'Enquiry: '+t+'\nName: '+n+'\nPhone: '+p+(m?'\nMessage: '+m:'')),'_blank');else toast('Enquiry saved on this device. Add WhatsApp number in Admin to send.')}
+function login(){if(Q('#pin').value==D.cfg.pin){authed=true;route()}else toast('Wrong PIN')}
+/* ---------- Admin ---------- */
+function arr(k){return k.indexOf('work.')==0?D.work[k.slice(5)]:D[k]}
+function S(k,i,f,v){arr(k)[i][f]=v;save()}
+function X(k,i){if(confirm('Remove this item?')){arr(k).splice(i,1);save();route()}}
+function A(k,o){arr(k).push(o);save();route()}
+function inp(k,i,f,v,ph){return '<input value="'+E(v)+'" placeholder="'+ph+'" oninput="S(\''+k+'\','+i+',\''+f+'\',this.value)">'}
+function adminUI(){var T=[['plans','Plans'],['trainers','Trainers'],['work','Workouts'],['enq','Enquiries ('+D.enq.length+')'],['mem','Members'],['cfg','Settings']];
+return '<h2>Admin <span class="red">Dashboard</span></h2><div class="chips">'+T.map(function(x){return '<button class="'+(x[0]==tab?'on':'')+'" onclick="tab=\''+x[0]+'\';route()">'+x[1]+'</button>'}).join('')+'</div>'+AD[tab]()+'<div class="card"><button class="g sm" onclick="authed=false;route()">Logout</button></div>'}
+var AD={
+plans:function(){return D.plans.map(function(p,i){return '<div class="card">'+inp('plans',i,'name',p.name,'Plan name')+'<div class="r2">'+inp('plans',i,'price',p.price,'Price ₹')+inp('plans',i,'dur',p.dur,'Duration')+'</div>'+inp('plans',i,'feat',p.feat,'Features, comma separated')+'<button class="g sm" onclick="X(\'plans\','+i+')">Remove</button></div>'}).join('')+'<div class="card"><button onclick="A(\'plans\',{name:\'New Plan\',dur:\'\',price:\'\',feat:\'\'})">+ Add plan</button></div>'},
+trainers:function(){return D.trainers.map(function(t,i){return '<div class="card">'+inp('trainers',i,'n',t.n,'Name')+inp('trainers',i,'sp',t.sp,'Specialization')+inp('trainers',i,'exp',t.exp,'Experience')+inp('trainers',i,'img',t.img,'Photo URL (optional)')+'<button class="g sm" onclick="X(\'trainers\','+i+')">Remove</button></div>'}).join('')+'<div class="card"><button onclick="A(\'trainers\',{n:\'New Trainer\',sp:\'\',exp:\'\',img:\'\'})">+ Add trainer</button></div>'},
+work:function(){var k='work.'+cat;return '<div class="card"><select onchange="cat=this.value;route()">'+CATS.map(function(c){return '<option value="'+c[0]+'"'+(c[0]==cat?' selected':'')+'>'+c[1]+'</option>'}).join('')+'</select></div>'+D.work[cat].map(function(x,i){return '<div class="card">'+inp(k,i,0,x[0],'Exercise')+inp(k,i,1,x[1],'Sets × reps')+inp(k,i,2,x[2],'Description')+'<button class="g sm" onclick="X(\''+k+'\','+i+')">Remove</button></div>'}).join('')+'<div class="card"><button onclick="A(\''+k+'\',[\'New exercise\',\'3 × 10\',\'\'])">+ Add exercise</button></div>'},
+enq:function(){return (D.enq.map(function(q,i){return '<div class="card"><b>'+E(q.n)+'</b> <span class="tag">'+E(q.topic)+'</span><br><small class="note">'+new Date(q.t).toLocaleString('en-IN')+' · '+E(q.p)+'</small><p>'+E(q.m)+'</p><div class="row"><a class="btn sm" target="_blank" href="'+waurl(q.p,'Hi '+q.n+', thanks for your enquiry at RAW FITNESS CLUB.')+'">Reply</a><button class="g sm" onclick="X(\'enq\','+i+')">Delete</button></div></div>'}).join(''))||'<p class="sub">No enquiries on this device yet.</p>'},
+mem:function(){var t=new Date();t.setHours(0,0,0,0);return '<div class="card"><input id="mn" placeholder="Member name"><div class="r2"><input id="mp" placeholder="Phone" inputmode="tel"><input id="mx" type="date"></div><input id="mpl" placeholder="Plan (e.g. Monthly)"><button style="width:100%" onclick="addMem()">Add member</button></div>'+D.mem.map(function(m,i){var d=Math.round((new Date(m.exp+'T00:00:00')-t)/864e5);return '<div class="card"><b>'+E(m.n)+'</b> <span class="tag '+(d<0?'bad':'ok')+'">'+(d<0?Math.abs(d)+' days expired':d+' days left')+'</span><br><small class="note">'+E(m.pl)+' · '+E(m.p)+' · expires '+E(m.exp)+'</small><div class="row" style="margin-top:8px"><a class="btn sm" target="_blank" href="'+waurl(m.p,'Hi '+m.n+', your RAW FITNESS CLUB membership expires on '+m.exp+'. Please renew.')+'">Remind</a><button class="g sm" onclick="X(\'mem\','+i+')">Remove</button></div></div>'}).join('')},
+cfg:function(){var c=D.cfg;return '<div class="card"><label>Address</label><input value="'+E(c.addr)+'" oninput="D.cfg.addr=this.value;save()"><label>Phone</label><input value="'+E(c.phone)+'" oninput="D.cfg.phone=this.value;save()"><label>WhatsApp number (with country code)</label><input value="'+E(c.wa)+'" oninput="D.cfg.wa=this.value;save()"><label>Google Maps link</label><input value="'+E(c.map)+'" oninput="D.cfg.map=this.value;save()"><label>Instagram link</label><input value="'+E(c.insta)+'" oninput="D.cfg.insta=this.value;save()"><label>Admin PIN</label><input value="'+E(c.pin)+'" oninput="D.cfg.pin=this.value;save()"><div class="row"><button class="g sm" onclick="bk()">Download backup</button><button class="g sm" onclick="Q(\'#rf\').click()">Restore</button></div><input id="rf" type="file" hidden onchange="rs(event)"></div>'}};
+function addMem(){var n=Q('#mn').value.trim(),x=Q('#mx').value;if(!n||!x)return toast('Enter name and expiry date');D.mem.push({n:n,p:Q('#mp').value,exp:x,pl:Q('#mpl').value});save();route()}
+function bk(){var a=document.createElement('a');a.href='data:application/json,'+encodeURIComponent(JSON.stringify(D));a.download='raw-fitness-backup.json';a.click()}
+function rs(e2){var r=new FileReader();r.onload=function(){try{D=Object.assign(def(),JSON.parse(r.result));save();route();toast('Restored')}catch(x){toast('Invalid file')}};r.readAsText(e2.target.files[0])}
+addEventListener('hashchange',route);route();
+if('serviceWorker' in navigator)addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){})});
+</script></body></html>
