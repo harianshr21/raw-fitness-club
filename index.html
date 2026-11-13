@@ -67,27 +67,41 @@ loss:[['Treadmill Intervals','10 rounds · 1 min fast/1 min easy','Raise heart r
 muscle:[['Deadlift','4 × 5-6','Heavy compound lift. Neutral spine, drive through the floor.'],['Weighted Pull-Up','4 × 6-8','Full stretch at the bottom, chin over bar.'],['Dumbbell Bench Press','4 × 8-10','Deep stretch, controlled tempo, progressive overload.']]},
 trainers:[{n:'Trainer Name 1',sp:'Strength & Muscle Building',exp:'5 years',img:''},{n:'Trainer Name 2',sp:'Weight Loss & Conditioning',exp:'4 years',img:''},{n:'Trainer Name 3',sp:'Functional & Mobility',exp:'3 years',img:''}],enq:[],mem:[]}}
 var D=def();try{var sv=JSON.parse(localStorage.getItem(K));if(sv)D=Object.assign(def(),sv)}catch(x){}
+
+
+
 var sb=window.supabase.createClient(
-'https://vmeuddrtlwboqrhpyaoo.supabase.co',
-'sb_publishable_GAqKU4uTM75tWFC0JC7Jjg_oDovrdrg'
+  'https://vmeuddrtlwboqrhpyaoo.supabase.co',
+  'sb_publishable_GAqKU4uTM75tWFC0JC7Jjg_oDovrdrg'
 );
+
 var cloudReady=false;
 
 function save(){
-  try{localStorage.setItem(K,JSON.stringify(D))}catch(x){}
+  try{
+    localStorage.setItem(K,JSON.stringify(D));
+  }catch(x){}
+
   if(cloudReady){
     sb.from('gym_content')
       .update({
-        content:{
-          plans:D.plans,
-          trainers:D.trainers,
-          work:D.work
-        },
+       content:{
+  plans:D.plans,
+  trainers:D.trainers,
+  work:D.work,
+  cfg:{
+    phone:D.cfg.phone,
+    wa:D.cfg.wa,
+    addr:D.cfg.addr,
+    map:D.cfg.map,
+    insta:D.cfg.insta
+  }
+},
         updated_at:new Date().toISOString()
       })
       .eq('section','app_data')
       .then(function(r){
-        if(r.error)console.error('Cloud save error:',r.error);
+        if(r.error) console.error('Cloud save error:',r.error);
       });
   }
 }
@@ -105,30 +119,26 @@ async function loadCloud(){
       D.plans=r.data.content.plans || D.plans;
       D.trainers=r.data.content.trainers || D.trainers;
       D.work=r.data.content.work || D.work;
-    }else{
-      var w=await sb.from('gym_content')
-        .update({
-          content:{
-            plans:D.plans,
-            trainers:D.trainers,
-            work:D.work
-          },
-          updated_at:new Date().toISOString()
-        })
-        .eq('section','app_data');
-
-      if(w.error) throw w.error;
+if(r.data.content.cfg){
+  D.cfg.phone=r.data.content.cfg.phone || D.cfg.phone;
+  D.cfg.wa=r.data.content.cfg.wa || D.cfg.wa;
+  D.cfg.addr=r.data.content.cfg.addr || D.cfg.addr;
+  D.cfg.map=r.data.content.cfg.map || D.cfg.map;
+  D.cfg.insta=r.data.content.cfg.insta || D.cfg.insta;
+}
     }
 
     cloudReady=true;
     route();
     console.log('Cloud data loaded');
+
   }catch(e){
     console.error('Cloud load error:',e);
   }
 }
 
 loadCloud();
+
 function toast(t){var o=Q('#toast');o.textContent=t;o.className='on';clearTimeout(toast.t);toast.t=setTimeout(function(){o.className=''},2600)}
 function dig(s){return String(s||'').replace(/\D/g,'')}
 function waurl(n,t){n=dig(n);if(n.length==10)n='91'+n;return 'https://wa.me/'+n+'?text='+encodeURIComponent(t)}
